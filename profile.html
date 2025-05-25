@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - My Mother Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   
+    <style>
+        .profile-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/cookie.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        
+        .profile-banner h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-banner p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .profile-container {
+            padding: 0 0 80px;
+        }
+        
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+        }
+        
+        .profile-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            height: fit-content;
+        }
+        
+        .profile-avatar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .avatar-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        
+        .profile-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-menu {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        
+        .profile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-menu-item:hover, .profile-menu-item.active {
+            color: var(--primary-color);
+        }
+        
+        .profile-menu-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .profile-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .profile-section {
+            display: none;
+        }
+        
+        .profile-section.active {
+            display: block;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-header h2 {
+            font-size: 24px;
+            color: #714f4f;
+        }
+        
+        .edit-btn {
+            padding: 8px 16px;
+            background-color: var(--light-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .edit-btn i {
+            margin-right: 5px;
+        }
+        
+        .edit-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .profile-info {
+            margin-bottom: 30px;
+        }
+        
+        .info-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+        }
+        
+        .address-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .address-card.default::after {
+            content: 'Default';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .address-type {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .address-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .address-btn {
+            padding: 5px 10px;
+            background-color: var(--light-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .address-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .add-address-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-address-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .add-address-btn i {
+            margin-right: 10px;
+        }
+        
+        .order-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .order-header {
+            background-color: var(--light-color);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .order-id {
+            font-weight: 600;
+        }
+        
+        .order-date {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-delivered {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-processing {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .order-items {
+            padding: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .order-item-info {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-price {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .order-item-quantity {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .order-footer {
+            background-color: var(--light-color);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .order-total {
+            font-weight: 600;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .order-btn {
+            padding: 8px 12px;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .order-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+                
+        @media (max-width: 992px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-group {
+                grid-template-columns: 1fr;
+            }
+            
+        }
+        
+        @media (max-width: 576px) {
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+    
+            .order-header, .order-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .order-status, .order-actions {
+                margin-top: 10px;
+            }
+        }
+
+        .logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            background-color: #d9534f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .logout i {
+            font-size: 1rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.php">
+                    <h2>My Mother Home
+                        <img src="images/chef (1).png" width="30" height="30" alt="Logo">
+                    </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.php" class="active">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Reserve.html">Reserve</a></li>
+                    <li><a href="index.php">Reviews</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="account.php" class="icon-link active"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="icon-link cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Profile Banner -->
+<section class="profile-banner">
+    <div class="container">
+        <h1>My Account</h1>
+        <p>Welcome to your profile</p>
+    </div>
+</section>
+
+<!-- Profile Content -->
+<section class="profile-container">
+    <div class="container">
+        <div class="profile-grid">
+
+            <!-- Profile Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <img src="images/avatar.gif" alt="User Avatar" class="avatar-image">
+                    <div class="profile-name">User</div>
+                </div>
+                
+                <div class="profile-menu">
+                    <div class="profile-menu-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </div>
+                    <div class="profile-menu-item" data-section="orders">
+                        <i class="fas fa-shopping-bag"></i> My Orders
+                    </div>
+                    <div class="profile-menu-item" data-section="addresses">
+                        <i class="fas fa-map-marker-alt"></i> My Addresses
+                    </div>
+                    <div class="profile-menu-item" data-section="settings">
+                        <i class="fas fa-cog"></i> Account Settings
+                    </div>
+
+                    
+                    
+                </div>
+            </div>
+            
+            <!-- Profile Content -->
+            <div class="profile-content">
+                
+                <!-- Dashboard Section -->
+                <div class="profile-section active" id="dashboard">
+                    <div class="section-header">
+                        <h2>Dashboard</h2>
+                    </div>
+                    
+                    <div class="profile-info">
+                        <h3>Personal Information</h3>
+                        <div class="info-group">
+                            <div class="info-item">
+                                <div class="info-label">Full Name</div>
+                                <div class="info-value">User</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Email Address</div>
+                                <div class="info-value">user@gmail.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Phone Number</div>
+                                <div class="info-value">+968 0000000</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Member Since</div>
+                                <div class="info-value">March 15, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-orders">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3>Recent Orders</h3>
+                            <a href="#" class="view-all" data-section="orders" style="color: var(--primary-color);">View All</a>
+                        </div>
+                        
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div class="order-id">Order #12345</div>
+                                <div class="order-date">March 20, 2025</div>
+                                <div class="order-status status-delivered">Delivered</div>
+                            </div>
+                            <div class="order-items">
+                                <div class="order-item">
+                                    <img src="images/Lamb Kabsa.jpg" alt="Lamb Kabsa" class="order-item-image">
+                                    <div class="order-item-info">
+                                        <div class="order-item-name">Lamb Kabsa</div>
+                                        <div class="order-item-quantity">Quantity: 1</div>
+                                        <div class="order-item-price">1.500 OMR</div>
+                                    </div>
+                                </div>
+                                <div class="order-item">
+                                    <img src="images/cookie.jpg" alt="Homemade Cookies" class="order-item-image">
+                                    <div class="order-item-info">
+                                        <div class="order-item-name">Homemade Cookies</div>
+                                        <div class="order-item-quantity">Quantity: 2</div>
+                                        <div class="order-item-price">2.000 OMR</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-footer">
+                                <div class="order-total">Total: 3.500 OMR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Orders Section -->
+                <div class="profile-section" id="orders">
+                    <div class="section-header">
+                        <h2>My Orders</h2>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-id">Order #12345</div>
+                            <div class="order-date">March 20, 2025</div>
+                            <div class="order-status status-processing">Processing</div>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="images/chicken_kabsa.jpg" alt="Special Biryani" class="order-item-image">
+                                <div class="order-item-info">
+                                    <div class="order-item-name">Special Biryani</div>
+                                    <div class="order-item-quantity">Quantity: 1</div>
+                                    <div class="order-item-price">1.200 OMR</div>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <img src="images/kunafa.jpg" alt="Homemade Kunafa" class="order-item-image">
+                                <div class="order-item-info">
+                                    <div class="order-item-name">Homemade Kunafa</div>
+                                    <div class="order-item-quantity">Quantity: 2</div>
+                                    <div class="order-item-price">3.000 OMR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">Total: 4.200 OMR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-id">Order #12344</div>
+                            <div class="order-date">March 18, 2025</div>
+                            <div class="order-status status-delivered">Delivered</div>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="images/Lamb Kabsa.jpg" alt="Lamb Kabsa" class="order-item-image">
+                                <div class="order-item-info">
+                                    <div class="order-item-name">Lamb Kabsa</div>
+                                    <div class="order-item-quantity">Quantity: 1</div>
+                                    <div class="order-item-price">1.500 OMR</div>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <img src="images/cookie.jpg" alt="Cookies" class="order-item-image">
+                                <div class="order-item-info">
+                                    <div class="order-item-name">Cookies</div>
+                                    <div class="order-item-quantity">Quantity: 1</div>
+                                    <div class="order-item-price">1.000 OMR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">Total: 2.800 OMR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-id">Order #12343</div>
+                            <div class="order-date">March 15, 2025</div>
+                            <div class="order-status status-delivered">Delivered</div>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="images/cake.jpg" alt="Tiramisu" class="order-item-image">
+                                <div class="order-item-info">
+                                    <div class="order-item-name">Tiramisu</div>
+                                    <div class="order-item-quantity">Quantity: 2</div>
+                                    <div class="order-item-price">2.000 OMR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">Total: 2.000 OMR</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Addresses Section -->
+                <div class="profile-section" id="addresses">
+                    <div class="section-header">
+                        <h2>My Addresses</h2>
+                    </div>
+                
+                    <div class="addresses-list">
+                        <div class="address-card default" id="address">
+                            <div class="address-type">Home</div>
+                            <div class="address-details">
+                                <p>User</p>
+                                <p>123 Main Street, Apt 4B</p>
+                                <p>Muscat, OM 99</p>
+                                <p>Oman</p>
+                                <p>Phone: +968 00000000</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="address-btn edit-btn">Edit</button>
+                                <button class="address-btn delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="add-address-btn" id="addAddressBtn">
+                        <i class="fas fa-plus"></i> Add New Address
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="profile-section active" id="settings">
+                    <div class="section-header">
+                        <h2>Account Settings</h2>
+                    </div>
+                
+                    <div class="info-group">
+                        <div class="info-item">
+                            <div class="info-label">Full Name</div>
+                            <div class="info-value">User</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email Address</div>
+                            <div class="info-value">user@gmail.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Phone Number</div>
+                            <div class="info-value">+968 00000000</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Date of Birth</div>
+                            <div class="info-value">January 15, 1990</div>
+                        </div>
+                
+                        <div class="add-personal-actions">
+                            <button class="address-btn edit-btn" id="editInfoBtn">Edit</button>
+                            <br>
+                            <button class="address-btn delete-btn" id="deleteInfoBtn">Delete</button>
+                        </div>
+
+                <!-- Notification Preferences -->
+                <div class="notification-settings">
+                    <h3>Notification Preferences</h3>
+                    <label><input type="checkbox" checked> Email Notifications</label><br>
+                    <label><input type="checkbox" checked> SMS Notifications</label><br>
+                    <label><input type="checkbox" checked> Promotional Emails</label><br>
+                </div>
+
+                <!-- Logout -->
+                <div class="logout-section">
+                     <a href="account.php" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                        
+                </div>
+
+            
+            </div>
+            
+                </div>
+        </div>
+    </div>
+</section>
+                
+        </div> 
+        <div>
+        
+        </div>
+    </div> 
+</section>
+
+
+ <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>My Mother Home</h2>
+                        <p>Homemade with Love</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> +968 99768254</li>
+                        <li><i class="fas fa-instagram"></i> Instagram: moms.home_8889</li>
+                        <li><i class="fas fa-map-marker-alt"></i>South Mabillah, Muscat, Oman</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/99001890" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/moms.home_8889?igsh=MXwNHRIdmJyazVibA==" class="social-link"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                    <div class="payment-methods">
+                        <h3>We Accept</h3>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 My Mother Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Section Switching
+            const menuItems = document.querySelectorAll('.profile-menu-item');
+            const profileSections = document.querySelectorAll('.profile-section');
+    
+            menuItems.forEach(menuItem => {
+                menuItem.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    menuItems.forEach(item => item.classList.remove('active'));
+                    profileSections.forEach(section => section.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+    
+            // Notification Function
+            function showNotification(message) {
+                let notification = document.querySelector('.notification');
+                if (!notification) {
+                    notification = document.createElement('div');
+                    notification.className = 'notification';
+                    document.body.appendChild(notification);
+                }
+                notification.textContent = message;
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 3000);
+            }
+    
+            // Edit Info Button Logic
+            const editInfoBtn = document.getElementById('editInfoBtn');
+            if (editInfoBtn) {
+                editInfoBtn.addEventListener('click', function () {
+                    const items = document.querySelectorAll('.info-item');
+    
+                    if (this.textContent === 'Edit') {
+                        items.forEach(item => {
+                            const valueDiv = item.querySelector('.info-value');
+                            const currentValue = valueDiv.textContent;
+                            const label = item.querySelector('.info-label').textContent.toLowerCase().replace(/\s+/g, '-');
+    
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.value = currentValue;
+                            input.classList.add('editable-input');
+                            input.setAttribute('data-label', label);
+                            valueDiv.replaceWith(input);
+                        });
+    
+                        this.textContent = 'Save';
+                        this.classList.add('save-mode');
+                    } else {
+                        const inputs = document.querySelectorAll('.editable-input');
+    
+                        inputs.forEach(input => {
+                            const newValue = input.value;
+                            const newDiv = document.createElement('div');
+                            newDiv.classList.add('info-value');
+                            newDiv.textContent = newValue;
+                            input.replaceWith(newDiv);
+                        });
+    
+                        this.textContent = 'Edit';
+                        this.classList.remove('save-mode');
+                    }
+                });
+            }
+    
+            // Delete Info Button Logic
+            const deleteInfoBtn = document.getElementById('deleteInfoBtn');
+            if (deleteInfoBtn) {
+                deleteInfoBtn.addEventListener('click', function () {
+                    if (confirm('Are you sure you want to delete your info?')) {
+                        const values = document.querySelectorAll('.info-value');
+                        values.forEach(value => {
+                            value.textContent = '';
+                        });
+                        showNotification('Information deleted.');
+                    }
+                });
+            }
+    
+            // Reusable function to attach Edit/Delete to address cards
+            function attachAddressActions(card) {
+                const details = card.querySelectorAll('.address-details p');
+    
+                // Edit Address
+                const editBtn = card.querySelector('.edit-btn');
+                if (editBtn) {
+                    editBtn.addEventListener('click', function () {
+                        const currentValues = Array.from(details).map(p => p.textContent);
+    
+                        const newName = prompt('Edit name:', currentValues[0]);
+                        const newStreet = prompt('Edit street address:', currentValues[1]);
+                        const newCity = prompt('Edit city & zip:', currentValues[2]);
+                        const newCountry = prompt('Edit country:', currentValues[3]);
+                        const newPhone = prompt('Edit phone:', currentValues[4]);
+    
+                        if (newName && newStreet && newCity && newCountry && newPhone) {
+                            details[0].textContent = newName;
+                            details[1].textContent = newStreet;
+                            details[2].textContent = newCity;
+                            details[3].textContent = newCountry;
+                            details[4].textContent = newPhone;
+                            showNotification('Address updated.');
+                        }
+                    });
+                }
+    
+                // Delete Address
+                const deleteBtn = card.querySelector('.delete-btn');
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', function () {
+                        if (confirm('Are you sure you want to delete this address?')) {
+                            card.remove();
+                            showNotification('Address deleted.');
+                        }
+                    });
+                }
+            }
+    
+            // Add New Address
+            const addAddressBtn = document.getElementById('addAddressBtn');
+            const addressesList = document.querySelector('.addresses-list');
+    
+            if (addAddressBtn && addressesList) {
+                addAddressBtn.addEventListener('click', function () {
+                    const name = prompt('Enter name:');
+                    const street = prompt('Enter street address:');
+                    const cityZip = prompt('Enter city and zip:');
+                    const country = prompt('Enter country:');
+                    const phone = prompt('Enter phone number:');
+    
+                    if (name && street && cityZip && country && phone) {
+                        const addressCard = document.createElement('div');
+                        addressCard.classList.add('address-card');
+    
+                        addressCard.innerHTML = `
+                            <div class="address-type">Home</div>
+                            <div class="address-details">
+                                <p>${name}</p>
+                                <p>${street}</p>
+                                <p>${cityZip}</p>
+                                <p>${country}</p>
+                                <p>Phone: ${phone}</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="address-btn edit-btn">Edit</button>
+                                <button class="address-btn delete-btn">Delete</button>
+                            </div>
+                        `;
+    
+                        addressesList.appendChild(addressCard);
+                        attachAddressActions(addressCard);
+                        showNotification('New address added.');
+                    }
+                });
+            }
+    
+            // Attach edit/delete to initial address card(s)
+            document.querySelectorAll('.address-card').forEach(attachAddressActions);
+        });
+    </script>
+    
+</body>
+</html>

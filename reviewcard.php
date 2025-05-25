@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Review</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    
+   body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Serif', 'sans-serif', 'Fantasy';
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/reserve.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+    h2 {
+      margin-top: 30px;
+      font-size: 2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .divider {
+      width: 30%;
+      height: 2px;
+      background-color: #fff;
+      margin: 10px 0 20px;
+    }
+
+    .review-card {
+      background-color: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .review-text {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .review-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .author-info h4 {
+      font-size: 1.1rem;
+      color: #333;
+      margin: 0;
+    }
+
+    .author-avatar {
+      text-align: center;
+    }
+
+    .author-avatar img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 5px;
+    }
+
+    .review-rating {
+      color: #ffcc00;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>My Mother Home <img src="images/chef (1).png" width="30" height="30" alt="Logo" /></h2>
+  <div class="divider"></div>
+
+  <div class="review-card">
+    <p class="review-text">"Your Review has been received Successfully ✅."</p>
+    
+    <div class="review-author">
+      <div class="author-info">
+        <h4>Thank You !</h4>
+      </div>
+      <div class="author-avatar">
+        <img src="images/avatar.gif" alt="Avatar" />
+        <div class="review-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i> <!-- 4 out of 5 stars -->
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - My Mother Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+    <style>
+
+        .cart-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/cookie.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .cart-container {
+            padding: 0 0 60px;
+        }
+        
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-summary {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        /* Customize the price formatting */
+        .summary-row span {
+            font-size: 16px;
+        }
+
+        .total-price {
+            font-weight: bold;
+        }
+        
+        .remove-btn {
+            cursor: pointer;
+            color: #ff4d4d;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-right: none;
+        }
+
+        /* Reduce the image size */
+        .cart-product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        /* Add styles for the selection bar */
+        .select-items-bar {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .select-items-bar button {
+            background-color: #e3a968;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .select-items-bar button:hover {
+            background-color: #e3a968;
+        }
+
+        @media (max-width: 768px) {
+            .cart-table thead {
+                display: none;
+            }
+            
+            .cart-table, .cart-table tbody, .cart-table tr, .cart-table td {
+                display: block;
+                width: 100%;
+            }
+            
+            .cart-table tr {
+                margin-bottom: 20px;
+            }
+
+            .cart-table td {
+                text-align: right;
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.php">
+                        <h2>My Mother Home
+                        <img src="images/chef (1).png" width="30" height="30" alt="logo"></h2></a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.php" class="active">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="Reserve.html">Reserve</a></li>
+                        <li><a href="index.php">Reviews</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="account.php" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="cart.html" class="icon-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="cart-banner">
+        <div class="container">
+            <h1>Your Shopping Cart</h1>
+            <p>Review your meals and proceed to checkout</p>
+        </div>
+    </section>
+
+    <section class="cart-container">
+        <div class="container">
+            <!-- Cart Items Table -->
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <tr>
+                        <td>
+                            <div class="cart-product">
+                                <img src="images/chicken_kabsa.jpg" alt="Special Biryani" class="cart-product-image">
+                                <div class="cart-product-info">
+                                    <h3>Special Biryani</h3>
+                                    <p> A special homemade Chicken Biryani from my mother home.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>1.200 OMR</td>
+                        <td>
+                            <div class="quantity-control">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                        </td>
+                        <td>1.200 OMR</td>
+                        <td><i class="fas fa-trash remove-btn"></i></td>
+                    </tr>
+                </tbody>
+
+                <tbody id="cart-items">
+                    <tr>
+                        <td>
+                            <div class="cart-product">
+                                <img src="images/kunafa.jpg" alt="Kunafa" class="cart-product-image">
+                                <div class="cart-product-info">
+                                    <h3>Kunafa</h3>
+                                    <p>Kunafa filled with creamy cheese and soaked in sweet, aromatic syrup.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>1.500 OMR</td>
+                        <td>
+                            <div class="quantity-control">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                        </td>
+                        <td>1.200 OMR</td>
+                        <td><i class="fas fa-trash remove-btn"></i></td>
+                    </tr>
+                </tbody>
+
+                <tbody id="cart-items">
+                    <tr>
+                        <td>
+                            <div class="cart-product">
+                                <img src="images/honey comp bread.jpg" alt="Honey comp bread" class="cart-product-image">
+                                <div class="cart-product-info">
+                                    <h3>Honey Comp Bread</h3>
+                                    <p>Special home made honey comp bread.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>1.000 OMR</td>
+                        <td>
+                            <div class="quantity-control">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                        </td>
+                        <td>1.000 OMR</td>
+                        <td><i class="fas fa-trash remove-btn"></i></td>
+                    </tr>
+                </tbody>
+                    <tbody id="cart-items">
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <img src="images/Omani Bread.png" alt="Omani Bread" class="cart-product-image">
+                                    <div class="cart-product-info">
+                                        <h3>Omani Bread</h3>
+                                        <p>Freshly Omani baked bread.</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1.800 OMR</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </td>
+                            <td>1.800 OMR</td>
+                            <td><i class="fas fa-trash remove-btn"></i></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody id="cart-items">
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <img src="images/Lamb Kabsa.jpg" alt="Lamb Kabsa" class="cart-product-image">
+                                    <div class="cart-product-info">
+                                        <h3>Lamb Kabsa</h3>
+                                        <p>Traditional Omani rice dish with tender lamb and special spices.</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1.500 OMR</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </td>
+                            <td>1.500 OMR</td>
+                            <td><i class="fas fa-trash remove-btn"></i></td>
+                        </tr>
+                    </tbody>
+                    <tbody id="cart-items">
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <img src="images/mango juice.png" alt="Fresh mango juice" class="cart-product-image">
+                                    <div class="cart-product-info">
+                                        <h3>Fresh mango juice</h3>
+                                        <p>Fresh home made mango juice.</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>0.800 OMR</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </td>
+                            <td>0.800 OMR</td>
+                            <td><i class="fas fa-trash remove-btn"></i></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody id="cart-items">
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <img src="images/cookie.jpg" alt="Cookies" class="cart-product-image">
+                                    <div class="cart-product-info">
+                                        <h3>Cookies</h3>
+                                        <p>10 pices of delisus, fresh and sweet home made cookies.</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1.000 OMR</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </td>
+                            <td>1.000 OMR</td>
+                            <td><i class="fas fa-trash remove-btn"></i></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody id="cart-items">
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <img src="images/cake.jpg" alt="Tiramisu" class="cart-product-image">
+                                    <div class="cart-product-info">
+                                        <h3>Tiramisu</h3>
+                                        <p>Fresh and speical Home made Tiramisu.</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1.000 OMR</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </td>
+                            <td>1.000 OMR</td>
+                            <td><i class="fas fa-trash remove-btn"></i></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody id="cart-items">
+                        <tr>
+                            <td>
+                                <div class="cart-product">
+                                    <img src="images/Stuffed Grape Leaves.jpg" alt="Stuffed Grape Leaves" class="cart-product-image">
+                                    <div class="cart-product-info">
+                                        <h3>Stuffed Grape Leaves</h3>
+                                        <p>Grape leaves stuffed with rice.</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1.000 OMR</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="text" class="quantity-input" value="0" readonly placeholder="V">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </td>
+                            <td>1.000 OMR</td>
+                            <td><i class="fas fa-trash remove-btn"></i></td>
+                        </tr>
+                    </tbody>
+            </table>
+
+   <form method="POST" action="cartRecord.php" id="checkout-form">
+    <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotal">1.200 OMR</span>
+        </div>
+        <div class="summary-row">
+            <span>Delivery Fee</span>
+            <span id="delivery-fee">1.000 OMR</span>
+        </div>
+        <div class="summary-row">
+            <span>Tax</span>
+            <span id="tax">0.150 OMR</span>
+        </div>
+        <div class="summary-row total">
+            <span>Total</span>
+            <span id="total">2.350 OMR</span>
+        </div>
+    </div>
+
+    <!-- Hidden input to send the total value -->
+    <input type="hidden" name="total" id="total-input" value="">
+
+    <div class="cart-actions">
+        <button type="submit" class="btn btn-primary" name="orders">Proceed to Checkout</button>
+    </div>
+</form>
+        </div>
+    </section>
+<section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>My Mother Home</h2>
+                        <p>Homemade with Love</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> +968 99768254</li>
+                        <li><i class="fas fa-instagram"></i> Instagram: moms.home_8889</li>
+                        <li><i class="fas fa-map-marker-alt"></i>South Mabillah, Muscat, Oman</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/99001890" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/moms.home_8889?igsh=MXwNHRIdmJyazVibA==" class="social-link"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                    <div class="payment-methods">
+                        <h3>We Accept</h3>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 My Mother Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+  
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Helper to parse OMR string to float
+    function parseOMR(value) {
+        return parseFloat(value.replace('OMR', '').trim());
+    }
+
+    // Helper to format float to OMR string
+    function formatOMR(value) {
+        return `${value.toFixed(3)} OMR`;
+    }
+
+    function updateCartTotals() {
+        let subtotal = 0;
+
+        // Loop through cart items rows (assuming #cart-items exists)
+        document.querySelectorAll('#cart-items tr').forEach(row => {
+            const priceText = row.querySelector('td:nth-child(2)').textContent.trim();
+            const price = parseOMR(priceText);
+            const qty = parseInt(row.querySelector('.quantity-input').value);
+            const total = price * qty;
+            row.querySelector('td:nth-child(4)').textContent = formatOMR(total);
+            subtotal += total;
+        });
+
+        const deliveryFee = 1.000;
+        const tax = 0.150;
+        const totalAmount = subtotal + deliveryFee + tax;
+
+        document.getElementById('subtotal').textContent = formatOMR(subtotal);
+        document.getElementById('delivery-fee').textContent = formatOMR(deliveryFee);
+        document.getElementById('tax').textContent = formatOMR(tax);
+        document.getElementById('total').textContent = formatOMR(totalAmount);
+
+        // Update hidden input with numeric total for form submission
+        document.getElementById('total-input').value = totalAmount.toFixed(3);
+    }
+
+    // Call updateCartTotals on page load
+    updateCartTotals();
+
+    // Add event listeners for quantity change buttons if you have them
+    document.querySelectorAll('.decrease').forEach(button => {
+        button.addEventListener('click', () => {
+            const input = button.nextElementSibling;
+            let val = parseInt(input.value);
+            if(val > 1) {
+                input.value = val - 1;
+                updateCartTotals();
+            }
+        });
+    });
+
+    document.querySelectorAll('.increase').forEach(button => {
+        button.addEventListener('click', () => {
+            const input = button.previousElementSibling;
+            let val = parseInt(input.value);
+            input.value = val + 1;
+            updateCartTotals();
+        });
+    });
+
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            row.remove();
+            updateCartTotals();
+        });
+    });
+});
+</script>
+
+    
+</body>
+</html>

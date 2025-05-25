@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - My Mother Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Your existing CSS styles */
+        .menu-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/cake.jpg');        
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .menu-banner h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .menu-banner p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #fedbbb;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color:#030303;
+            border-color: var(#fedbbb);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Your additional styles for grid, meal cards, etc. */
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.php">
+                    <h2>My Mother Home
+                    <img src="images/chef (1).png" width="30" height="30" alt="logo"></h2></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.php" class="active">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Reserve.html">Reserve</a></li>
+                    <li><a href="index.php">Reviews</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="account.php" class="icon-link"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="icon-link cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="menu-banner">
+    <div class="container">
+        <h1>Our Menu</h1>
+        <p>Explore our delicious home-cooked meals prepared with love.</p>
+    </div>
+</section>
+
+<section class="menu-content">
+    <div class="container">
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all">All Items</button>
+            <button class="filter-btn" data-filter="popular">Popular Foods</button>
+            <button class="filter-btn" data-filter="sweets">Sweets</button>
+            <button class="filter-btn" data-filter="healthy">Healthy Foods</button>
+            <button class="filter-btn" data-filter="special">Special Dishes</button>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="account2.php" class="add-new-card-btn">➕ Add New Meal</a>
+        </div>
+
+        <div class="menu-grid" id="meal-list">
+            <!-- Dynamic meal items will be inserted here by JavaScript -->
+        </div>
+    </div>
+</section>
+
+ <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>My Mother Home</h2>
+                        <p>Homemade with Love</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> +968 99768254</li>
+                        <li><i class="fas fa-instagram"></i> Instagram: moms.home_8889</li>
+                        <li><i class="fas fa-map-marker-alt"></i>South Mabillah, Muscat, Oman</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/99001890" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/moms.home_8889?igsh=MXwNHRIdmJyazVibA==" class="social-link"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                    <div class="payment-methods">
+                        <h3>We Accept</h3>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 My Mother Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="js/main.js"></script>
+
+<script>
+    // Filtering logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter');
+
+            productCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category.includes(filter)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Fetch meals from PHP backend and display dynamically
+    fetch('getmeals.php')
+        .then(response => response.json())
+        .then(data => {
+            const mealList = document.getElementById('meal-list');
+
+            data.forEach(meal => {
+                const mealDiv = document.createElement('div');
+                mealDiv.className = 'product-card';
+                mealDiv.setAttribute('data-category', meal.category);
+
+                mealDiv.innerHTML = `
+                    <div class="product-image">
+                        <img src="uploads/${meal.image}" alt="${meal.mealname}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${meal.mealname}</h3>
+                        <p>${meal.description}</p>
+                        <div class="product-price">${meal.price} OMR</div>
+                    </div>
+                `;
+
+                mealList.appendChild(mealDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading meals:', error);
+        });
+</script>
+
+</body>
+</html>

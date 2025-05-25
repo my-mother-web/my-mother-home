@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mother Home - Homemade Food Delivery</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+    .auth-banner {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/cookie.jpg');
+        background-size: cover;
+        background-position: center;
+        color: rgb(255, 255, 255);
+        padding: 60px 0;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .auth-banner h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .auth-banner p {
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .auth-container {
+        padding: 0 0 80px;
+    }
+    
+    .auth-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .auth-tabs {
+        display: flex;
+        background-color: var(#f8f9fa);
+    }
+    
+    .auth-tab {
+        flex: 1;
+        text-align: center;
+        padding: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .auth-tab.active {
+        background-color: rgb(110, 74, 65);
+        color: var(--primary-color);
+    }
+    
+    .auth-forms {
+        width: 100%;
+    }
+    
+    .auth-form {
+        display: none;
+        padding: 40px;
+    }
+    
+    .auth-form.active {
+        display: block;
+    }
+    
+    .auth-form h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: var(black);
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-family: var(--font-family);
+        transition: border-color 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+          <div class="header-content">
+            <div class="logo">
+              <a href="index.php">
+                <h2>My Mother Home <img src="images/chef (1).png" width="30" height="30" alt="Logo" /></h2>
+              </a>
+            </div>                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.php" class="active">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="Reserve.html">Reserve</a></li>
+                        <li><a href="index.php">Reviews</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="account.php" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="cart.html" class="icon-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="auth-banner">
+        <div class="container">
+            <h1>About us</h1>
+            <p>All informations need to know about us.</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+
+                    <div class="section-header">
+                    </div>
+                    <p>Welcome to My Mother Home where flavor meets tradition. We are proud to serve authentic home made meals. Our goal is simple: to bring you comforting, flavorful dishes made with love, care, and quality ingredients.
+                        <br>
+                       <br><b><u>Who We Are</b></u>
+                        <br>We're a family-owned business passionate about sharing the traditional recipes we grew up with. Every dish on our menu is prepared fresh daily, using time-honored cooking techniques and hand-picked spices that reflect the true spirit of home made cooking.
+                        
+                      <br>
+                      <br><b><u>We Offer</b></u>
+                      <br>
+                      <br> ✅ Signature Dishes:
+                        
+                      <br>   1. Chicken Biryani 
+                        
+                      <br> 2. Beef Biryani
+                        
+                      <br> 3. Fresh Juices
+                        
+                      <br>  4. Sweets 
+                        <br>
+                      <br>  ✅ Fresh Ingredients:
+                      <br>  We never compromise on quality. From farm-fresh vegetables to halal-certified meats, every bite is made with the finest ingredients.
+                        <br>
+                      <br>  ✅ Dine-In, Takeaway & Delivery:
+                      <br>  Whether you want to enjoy your meal in a cozy setting, take it on the go, or have it delivered to your doorstep — we’ve got you covered.
+                        
+                        <br>
+                      <br><u><b> Why Choose Us?</b></u>
+
+                      <br>  1.   Home made Omani food 
+                      <br>  2.  Clean, comfortable environment
+                        <br>
+                      <br><u><b> Our Mission</b></u>
+                      <br> To offer delicious, homemade meals that make people feel at home — no matter where they are. 
+                      <br> We aim to create a space where food brings people together, builds community, and celebrates culture.
+                        <br>
+                      <br><u><b>Contact & Location</b></u>
+                      <br>    📍 Location: South Mabillah, Muscat, Oman
+                      <br>    📞 Phone:+968 99768254
+                      <br>   📱 Follow us on social media: Instagram: moms.home_8889
+
+                <center>
+                    <br>
+                    <br>
+                <div class="about-image">
+                    <img src="images/about-us.jpg" alt="About My Mother Home" width="600" height="650">
+                    <div class="about-decoration">
+                        <span class="decoration-item">˚ 🥟⋅🥡₊ ࣪˖ ִֶ🍛 ࿔*:</span>
+                    </center>
+                    
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>My Mother Home</h2>
+                        <p>Homemade with Love</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> +968 99768254</li>
+                        <li><i class="fas fa-instagram"></i> Instagram: moms.home_8889</li>
+                        <li><i class="fas fa-map-marker-alt"></i>South Mabillah, Muscat, Oman</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/99001890" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/moms.home_8889?igsh=MXwNHRIdmJyazVibA==" class="social-link"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                    <div class="payment-methods">
+                        <h3>We Accept</h3>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 My Mother Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>

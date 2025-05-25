@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - My Mother Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+       
+    <style>
+        
+        .menu-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/cake.jpg');        
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .menu-banner h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .menu-banner p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #fedbbb;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color:#030303;
+            border-color: var(#fedbbb);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        @media (max-width: 992px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .add-to-cart-btn {
+            background-color: #f7a76c; /* Warm orange or change to match your brand */
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: #e68c4f;
+        }
+
+        .add-to-cart-btn:disabled {
+            background-color: #ccc;
+            color: #444;
+        }
+        
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+          }
+          .meal-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 15px;
+          }
+          .meal-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+          .meal-card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+          }
+          .meal-card p {
+            font-size: 14px;
+            color: #666;
+          }
+          .meal-card .price {
+            font-weight: bold;
+            margin-top: 8px;
+            color: #f7a76c;
+          }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.php">
+                        <h2>My Mother Home
+                        <img src="images/chef (1).png" width="30" height="30" alt="logo"></h2></a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.php" class="active">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="Reserve.html">Reserve</a></li>
+                        <li><a href="index.php">Reviews</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="account.php" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="cart.html" class="icon-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="menu-banner">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Explore our delicious home-cooked meals prepared with love.</p>
+        </div>
+    </section>
+
+    
+    <section class="menu-content">
+        <div class="container">
+            <!-- Menu Filters -->
+            <div class="menu-filters">
+
+                <button class="filter-btn active" data-filter="all">All Items</button>
+                <button class="filter-btn" data-filter="popular">Popular Foods</button>
+                <button class="filter-btn" data-filter="sweets">Sweets</button>
+                <button class="filter-btn" data-filter="healthy">Healthy Foods</button>
+                <button class="filter-btn" data-filter="special">Special Dishes</button>
+            </div>
+            <div style="text-align: center; margin: 20px 0;">
+                <a href="account2.php" class="add-new-card-btn">➕ Add New Meal</a>
+            </div>
+
+            <div class="menu-grid">
+                <!-- dish 1 -->
+                <div class="product-card" data-category="popular special">
+                    <div class="product-image">
+                        <img src="images/Special Biryani.png" alt="Special Biryani">
+                        <div class="product-tag">Best Seller</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Special Biryani</h3>
+                        <p class="product-description"> A special homemade Chicken Biryani from my mother home.</p>
+                        <div class="product-price">1.200 OMR</div>
+                    </div>
+                </div>
+
+                <!-- dish 2 -->
+                <div class="product-card" data-category="sweets">
+                    <div class="product-image">
+                        <img src="images/kunafa.jpg" alt="Kunafa">
+                        <div class="product-tag">Popular</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kunafa</h3>
+                        <p class="product-description">Kunafa filled with creamy cheese and soaked in sweet, aromatic syrup. </p>
+                        <div class="product-price">1.500 OMR</div>
+                    </div>
+                </div>
+
+                <!-- dish 3 -->
+                <div class="product-card" data-category="sweets">
+                    <div class="product-image">
+                        <img src="images/honey comp bread.jpg" alt="Honey Comp Bread">
+                    </div>
+                    <div class="product-info">
+                        <h3>Honey Comp Bread</h3>
+                        <p class="product-description"> Special home made honey comp bread.</p>
+                        <div class="product-price">1 OMR</div>
+                    </div>
+                </div>
+
+                <!-- dish 4 -->
+                <div class="product-card" data-category="popular">
+                    <div class="product-image">
+                        <img src="images/Omani Bread.png" alt="Homemade Bread">
+                    </div>
+                    <div class="product-info">
+                        <h3>Omani Bread</h3>
+                        <p class="product-description">Freshly Omani baked bread.</p>
+                        <div class="product-price">1.800 OMR</div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="special">
+                    <div class="product-image">
+                        <img src="images/Lamb Kabsa.jpg" alt="Lamb Kabsa">
+                    </div>
+                    <div class="product-info">
+                        <h3>Lamb Kabsa</h3>
+                        <p class="product-description">Traditional Omani rice dish with tender lamb and special spices.</p>
+                        <div class="product-price">1.500 OMR</div>
+                    </div>
+                </div>
+
+                <!-- dish 6 -->
+                <div class="product-card" data-category="healthy">
+                    <div class="product-image">
+                        <img src="images/mango juice.png" alt="Mango juice">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh mango juice</h3>
+                        <p class="product-description">Fresh home made mango juice.</p>
+                        <div class="product-price"> 0.800 OMR</div>
+                    </div>
+                </div>
+
+                <!-- dish 7 -->
+                <div class="product-card" data-category="sweets">
+                    <div class="product-image">
+                        <img src="images/cookie.jpg" alt=" Cookies">
+                    </div>
+                    <div class="product-info">
+                        <h3>Cookies</h3>
+                        <p class="product-description">10 pices of delisus, fresh and sweet home made cookies.</p>
+                        <div class="product-price">1 OMR</div>
+                    </div>
+                </div>
+
+                <!-- dish 8 -->
+                <div class="product-card" data-category="sweets">
+                    <div class="product-image">
+                        <img src="images/cake.jpg" alt=" Tiramisu">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tiramisu</h3>
+                        <p class="product-description">Fresh and speical Home made Tiramisu.</p>
+                        <div class="product-price">1 OMR</div>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card" data-category="special">
+                    <div class="product-image">
+                        <img src="images/Stuffed Grape Leaves.jpg" alt="Stuffed Grape Leaves">
+                    </div>
+                    <div class="product-info">
+                        <h3>Stuffed Grape Leaves</h3>
+                        <p class="product-description">Grape leaves stuffed with rice.</p>
+                        <div class="product-price">1 OMR</div>
+                    </div>
+                </div>
+            </div>
+    </button>
+    
+    </section>
+
+   <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2>My Mother Home</h2>
+                        <p>Homemade with Love</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> +968 99768254</li>
+                        <li><i class="fas fa-instagram"></i> Instagram: moms.home_8889</li>
+                        <li><i class="fas fa-map-marker-alt"></i>South Mabillah, Muscat, Oman</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/99001890" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/moms.home_8889?igsh=MXwNHRIdmJyazVibA==" class="social-link"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                    <div class="payment-methods">
+                        <h3>We Accept</h3>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 My Mother Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    
+    <script>
+       
+            // Filtering logic
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+    
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Remove 'active' class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add 'active' to the clicked button
+                    this.classList.add('active');
+    
+                    const filter = this.getAttribute('data-filter');
+    
+                    productCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+    
+                        if (filter === 'all' || category.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+    </script>
+
+    <script>
+        fetch('getmeals.php')
+          .then(response => response.json())
+          .then(data => {
+            const mealList = document.getElementById('meal-list');
+        
+            data.forEach(meal => {
+              const mealDiv = document.createElement('div');
+              mealDiv.className = 'meal-item';
+              mealDiv.innerHTML = `
+                <img src="uploads/${meal.image}" alt="${meal.mealname}" class="meal-image">
+                <h3>${meal.mealname}</h3>
+                <p>${meal.description}</p>
+                <p><strong>Category:</strong> ${meal.category}</p>
+                <p><strong>Price:</strong> ${meal.price} OMR</p>
+              `;
+              mealList.appendChild(mealDiv);
+            });
+          })
+          .catch(error => {
+            console.error('Error loading meals:', error);
+          });
+        </script>
+</body>
+</html>
