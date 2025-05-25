@@ -344,7 +344,8 @@
           <input type="password" name="password" id="passwordSignup" placeholder="Password" required />
           <label for="passwordSignup">Password</label>
         </div>
-        <input type="submit" class="btn" value="Sign Up" name="signUp" />
+       <input type="button" class="btn" value="Sign Up" onclick="window.location.href='profile.html';" />
+
       </form>
       <p class="or">----------or--------</p>
       <div class="links">
@@ -366,7 +367,7 @@
           <input type="password" name="password" id="passwordSignIn" placeholder="Password" required />
           <label for="passwordSignIn">Password</label>
         </div>
-        <input type="submit" class="btn" value="Sign In" name="signIn" />
+       <input type="button" class="btn" value="Sign In" onclick="window.location.href='profile.html';" />
       </form>
       <p class="or">----------or--------</p>
       <div class="links">
@@ -376,16 +377,6 @@
     </div>
   </div>
 
-  <script>
-  document.getElementById("signUpButton").addEventListener("click", function () {
-    window.location.href = "profile.html";
-  });
-    
-</script>
-  <script>
-  document.getElementById("signInButton").addEventListener("click", function () {
-    window.location.href = "profile.html";
-  });
     
 </script>
   <script>
