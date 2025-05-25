@@ -101,11 +101,17 @@
       <label for="image">Meal Image</label>
       <input type="file" id="image" name="image" accept="image/*" required>
 
-      <button type="submit" class="submit-btn" name="save">Save Meal</button>
+      <button type="button" class="submit-btn" name="save" id="saveMealBtn">Save Meal</button>
     </form>
 
     <a href="menu.html" class="back-link">← Back to Menu </a>
   </div>
+<script>
+  document.getElementById("saveMealBtn").addEventListener("click", function () {
+    window.location.href = "menu2.html";
+  });
+</script>
+  
 
 </body>
 </html>
